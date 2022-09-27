@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/persona")
-public class ControlerGet {
+public class ControllerGet {
 
     @Autowired
     private PersonaService personaService;
@@ -27,11 +27,7 @@ public class ControlerGet {
     @GetMapping("/nombre/{nombre}")
     public List<Persona> mostrarPersonaPorNombre(@PathVariable("nombre") String nombre) {
         List<Persona> listaPersonas = null;
-        try {
-            listaPersonas = personaService.getPersonaByName(nombre); //Si no hay personas con ese nombre, se lanza excepcion
-        } catch (FileNotFoundException personaNoEncontrada) {
-            System.out.println("No se ha/n encontrado persona/s con este nombre: " + nombre);
-        }
+        listaPersonas = personaService.getPersonaByName(nombre); //Si no hay personas con ese nombre, se lanza excepcion
         return listaPersonas;
     }
 }

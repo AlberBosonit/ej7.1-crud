@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -24,7 +22,7 @@ public class PersonaServiceImpl implements PersonaService{
 
     @Override
     public Persona modifyPersona(Persona persona) {
-        Optional<Persona> p = personaRepository.findById(persona.getId());
+        //Optional<Persona> p = personaRepository.findById(persona.getId());
         personaRepository.save(persona);
         return persona;
     }
@@ -44,11 +42,12 @@ public class PersonaServiceImpl implements PersonaService{
     }
 
     @Override
-    public List<Persona> getPersonaByName(String nombre) throws FileNotFoundException {
+    public List<Persona> getPersonaByName(String nombre) {
         List<Persona> personasRepository = (List<Persona>) personaRepository.findAll();
+        if(personasRepository.isEmpty())
+            return null;
         Stream<Persona> personaStream = personasRepository.stream();
         List<Persona> personasConEseNombre;
-
         personasConEseNombre = personaStream.filter(person -> person.getNombre().equals(nombre)).toList();
 
         return personasConEseNombre;

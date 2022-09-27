@@ -9,5 +9,5 @@ public interface PersonaService {
     Persona modifyPersona(Persona persona);
     void deletePersona(Long id);
     Persona getPersonaById(Long id) throws FileNotFoundException;
-    List<Persona> getPersonaByName(String nombre) throws FileNotFoundException;
+    List<Persona> getPersonaByName(String nombre);
 }
